@@ -39,7 +39,7 @@ For immediate demo without any setup:
    pip install -r requirements.txt
    ```
 
-3. **Run Flask Backend (Optional)**
+3. **Run Backend app.py**
    ```bash
    python app.py
    ```
