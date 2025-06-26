@@ -31,7 +31,7 @@ For immediate demo without any setup:
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/Rj2790/DCM-Task.git
-   cd Project repository
+   cd DCM-Task
    ```
 
 2. **Install Dependencies**
