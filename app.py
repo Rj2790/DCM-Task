@@ -1,17 +1,25 @@
 import requests
 import json
+import os
+import sys
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 import numpy as np
-import os
 
 app = Flask(__name__)
 CORS(app)
 
-# API keys directly in code
-OPENROUTER_API_KEY = "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"
+# API keys - checks environment variable first, then falls back to placeholder
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY', 'YOUR_API_KEY_HERE')
 GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxuaLIKsCjjKZulByjiAlW7eeEdgUU0a96KByA205BGsHAs9p6ed4cbDq0g0kiC7ts9YA/exec"
+
+# If no API key is set, show usage and exit
+if OPENROUTER_API_KEY == "YOUR_API_KEY_HERE":
+    print("Please set your OpenRouter API key:")
+    print("OPENROUTER_API_KEY='sk-or-v1-your-key-here' python app.py")
+    print("\nOr get a free key at: https://openrouter.ai/")
+    sys.exit(1)
 
 # Initialize sentence transformer model
 print("Loading sentence transformer model...")
