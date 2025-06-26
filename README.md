@@ -11,14 +11,6 @@ A professional intelligent chatbot for DCM Moguls digital marketing services wit
 - **Email Automation**: Scheduled follow-up emails via Google Apps Script
 - **Zero Server Dependency**: Runs as standalone HTML file
 
-## Quick Start (HTML Only)
-
-For immediate demo without any setup:
-
-1. Open `web.html` directly in your browser
-2. The chatbot will work with full functionality
-3. No installation or server required
-
 ## Full Setup Instructions
 
 ### Prerequisites
@@ -39,14 +31,17 @@ For immediate demo without any setup:
    pip install -r requirements.txt
    ```
 
-3. **Run Backend app.py**
+3. **Past your OpenRouter API key**
    ```bash
-   python app.py
+   echo "YOUR_OPENROUTER_API_KEY" > api.txt
    ```
-   The server will start on `http://localhost:7860`
 
 4. **Preview the Application**
-   
+   - Simply open `web.html` through your terminal
+   ```bash
+   open web.html
+   ```
+   **OR**
    - Simply open `web.html` in your browser using Firefox
    - Download Firefox for mac from https://www.mozilla.org/en-US/firefox/mac/
    - Download Firefox for windows from https://www.mozilla.org/en-US/firefox/windows/
