@@ -10,15 +10,22 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-# API keys - checks environment variable first, then falls back to placeholder
-OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY', 'YOUR_API_KEY_HERE')
+# Read API key from api.txt
+try:
+    with open('api.txt', 'r') as f:
+        OPENROUTER_API_KEY = f.read().strip()
+except FileNotFoundError:
+    print("api.txt file not found!")
+    print("Please create api.txt file with your OpenRouter API key")
+    sys.exit(1)
+
 GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxuaLIKsCjjKZulByjiAlW7eeEdgUU0a96KByA205BGsHAs9p6ed4cbDq0g0kiC7ts9YA/exec"
 
 # If no API key is set, show usage and exit
-if OPENROUTER_API_KEY == "YOUR_API_KEY_HERE":
-    print("Please set your OpenRouter API key:")
-    print("OPENROUTER_API_KEY='sk-or-v1-your-key-here' python app.py")
-    print("\nOr get a free key at: https://openrouter.ai/")
+if OPENROUTER_API_KEY == "YOUR_API_KEY_HERE" or not OPENROUTER_API_KEY:
+    print("❌ Please update api.txt with your OpenRouter API key")
+    print("Edit api.txt and replace YOUR_API_KEY_HERE with your actual key")
+    print("\nGet a free key at: https://openrouter.ai/")
     sys.exit(1)
 
 # Initialize sentence transformer model
