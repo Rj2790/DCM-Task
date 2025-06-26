@@ -30,8 +30,8 @@ For immediate demo without any setup:
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
-   cd Project/repo
+   git clone https://github.com/Rj2790/DCM-Task.git
+   cd Project repository
    ```
 
 2. **Install Dependencies**
