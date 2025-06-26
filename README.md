@@ -47,10 +47,6 @@ For immediate demo without any setup:
 
 4. **Preview the Application**
    
-   **Option A: Via Flask Server**
-   - Navigate to `http://localhost:7860` in your browser
-   
-   **Option B: Direct HTML File**
    - Simply open `web.html` in your browser
    - Works without running Flask server
 
