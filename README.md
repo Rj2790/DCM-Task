@@ -22,7 +22,7 @@ A professional intelligent chatbot for DCM Moguls digital marketing services wit
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/Rj2790/DCM-Task.git
+   git clone https://github.com/your_directory/DCM-Task.git
    cd DCM-Task
    ```
 
