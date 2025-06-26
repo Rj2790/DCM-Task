@@ -48,3 +48,6 @@ For immediate demo without any setup:
 4. **Preview the Application**
    
    - Simply open `web.html` in your browser using Firefox
+   - Download Firefox for mac from https://www.mozilla.org/en-US/firefox/mac/
+   - Download Firefox for windows from https://www.mozilla.org/en-US/firefox/windows/
+
