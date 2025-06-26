@@ -49,5 +49,3 @@ For immediate demo without any setup:
    
    - Simply open `web.html` in your browser
    - Works without running Flask server
-
-## File Structure
