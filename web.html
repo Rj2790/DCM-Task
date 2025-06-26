@@ -590,8 +590,43 @@
         let collectingField = '';
         let isInputEnabled = false;
 
-        // API keys directly in code
-        const OPENROUTER_API_KEY = "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";
+        // Load API key from api.txt
+        let OPENROUTER_API_KEY = null;
+
+        // Function to load API key from api.txt
+        async function loadApiKey() {
+            try {
+                const response = await fetch('./api.txt');
+                if (response.ok) {
+                    OPENROUTER_API_KEY = (await response.text()).trim();
+                    console.log('API key loaded from api.txt');
+                    return true;
+                } else {
+                    console.error('Could not load api.txt');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error loading api.txt:', error);
+                return false;
+            }
+        }
+
+        // Initialize API key when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            const keyLoaded = await loadApiKey();
+            if (!keyLoaded) {
+                console.warn('API key not loaded. LLM features may not work.');
+            }
+            
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.querySelector('.chatbot-input button');
+            
+            // Disable input initially
+            userInput.disabled = true;
+            sendButton.disabled = true;
+            userInput.placeholder = "Please fill in the details first";
+        });
+
         const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxuaLIKsCjjKZulByjiAlW7eeEdgUU0a96KByA205BGsHAs9p6ed4cbDq0g0kiC7ts9YA/exec';
 
         // FAQ data with embeddings (simplified version)
@@ -642,6 +677,12 @@
 
         // LLM function using OpenRouter API
         async function getLLMResponse(userQuery, faqAnswer) {
+            // Check if API key is loaded
+            if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === 'YOUR_API_KEY_HERE') {
+                console.log('❌ No valid API key found, using fallback answer');
+                return faqAnswer;
+            }
+
             try {
                 const prompt = `You are a professional customer service representative for DCM Moguls, a digital marketing company.
 
@@ -1011,17 +1052,6 @@ IMPORTANT: Do NOT include any preamble, explanation, or phrases like "Here's a p
                     behavior: 'smooth'
                 });
             });
-        });
-
-        // Initialize disabled state when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const userInput = document.getElementById('userInput');
-            const sendButton = document.querySelector('.chatbot-input button');
-            
-            // Disable input initially
-            userInput.disabled = true;
-            sendButton.disabled = true;
-            userInput.placeholder = "Please fill in the details first";
         });
     </script>
 </body>
